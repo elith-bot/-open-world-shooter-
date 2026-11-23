@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 set -eu
 cd -- "$(dirname -- "$0")"
-if ! git pull --ff-only origin main; then
-  echo "Update failed. Resolve Git conflicts or check your connection." >&2
-  exit 1
+if [ "${OFFLINE:-0}" != 1 ]; then
+  if ! timeout 25 git pull --ff-only origin main; then
+    echo "Update unavailable; using local version." >&2
+  fi
 fi
+python3 setup_assets.py
 PORT="${PORT:-8080}"
 URL="http://127.0.0.1:$PORT"
 python3 -m http.server "$PORT" --bind 127.0.0.1 &

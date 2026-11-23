@@ -1,0 +1,1 @@
+Kenney assets (CC0 1.0): https://kenney.nl/ ; GLB conversions from https://github.com/Hidencod/tge-assets (repository LICENSE declares CC0). Three.js 0.160.1 MIT, license downloaded alongside modules. External files are cached locally by setup_assets.py. Existing soldier and weapons remain project prototypes.
