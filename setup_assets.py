@@ -5,6 +5,8 @@ files={
   "vendor/addons/loaders/GLTFLoader.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/loaders/GLTFLoader.js",
   "vendor/addons/utils/SkeletonUtils.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/utils/SkeletonUtils.js",
   "vendor/addons/loaders/RGBELoader.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/loaders/RGBELoader.js",
+  "vendor/basis/basis_transcoder.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/libs/basis/basis_transcoder.js",
+  "vendor/basis/basis_transcoder.wasm": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/libs/basis/basis_transcoder.wasm",
   "vendor/addons/loaders/KTX2Loader.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/loaders/KTX2Loader.js",
   "vendor/addons/utils/BufferGeometryUtils.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/utils/BufferGeometryUtils.js",
   "vendor/LICENSE": "https://cdn.jsdelivr.net/npm/three@0.160.1/LICENSE",
@@ -89,3 +91,9 @@ for item in catalog:
   legacy[name[7:]]=True
  except Exception as e: print("Optional V1 asset unavailable:",name,e,flush=True)
 (root/"assets/pro-manifest.json").write_text(json.dumps(legacy))
+
+# KTX2 is optional. This avoids startup failures on Termux without an encoder.
+try:
+ import subprocess,sys
+ subprocess.run([sys.executable,str(root/'prepare_ktx2.py')],check=True,timeout=610)
+except Exception as e: print('Optional KTX2 unavailable',e)

@@ -41,7 +41,7 @@ export function makeTerrain(T,ground,size){
  const positions=geo.getAttribute('position');
  for(let i=0;i<positions.count;i++){
   const x=positions.getX(i)+size/2,z=positions.getZ(i)+size/2;
-  const vx=Math.abs(((x-400+4000)%800)-400),vz=Math.abs(((z-400+4000)%800)-400);
+  const vx=Math.abs((x%800)-400),vz=Math.abs((z%800)-400);
   const roadClear=Math.max(0,Math.min(1,(Math.min(vx,vz)-45)/65));
   const nearCenter=Math.min(1,Math.hypot(x-2000,z-2000)/850);
   const roll=(Math.sin(x*.009)*Math.cos(z*.007)*1.9+Math.sin(x*.017+z*.013)*.7);
