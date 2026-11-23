@@ -11,13 +11,16 @@ const ASSET_PATHS={
 export async function loadWorldPack(T){
  const pack={};let available={};
  try{const r=await fetch('./assets/pro-manifest.json',{cache:'no-store'});if(r.ok)available=await r.json()}catch(e){console.warn('Asset manifest',e)}
- const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js'),loader=new GLTFLoader();
+ const {GLTFLoader}=await import('three/addons/loaders/GLTFLoader.js');
  const {clone}=await import('three/addons/utils/SkeletonUtils.js');pack.skinnedClone=clone;
  await Promise.all(Object.entries(ASSET_PATHS).map(async([name,path])=>{
   if(!available[path])return;
   let timer;
   try{
-   const gltf=await Promise.race([loader.loadAsync('./assets/'+path),new Promise((_,reject)=>timer=setTimeout(()=>reject(Error('Model timeout: '+name)),12500))]);
+   const loader=new GLTFLoader();
+   if(['HouseA','HouseB','HouseC'].includes(name))loader.setResourcePath('./assets/pro/v1/kenney_modular/');
+   if(['HouseD','HouseE'].includes(name))loader.setResourcePath('./assets/pro/v1/kenney_suburban/');
+   const gltf=await Promise.race([loader.loadAsync('./assets/'+path),new Promise((_,reject)=>timer=setTimeout(()=>reject(Error('Model timeout: '+name)),18000))]);
    if(name.endsWith('Clips'))pack[name]=gltf.animations;
    else pack[name]=gltf.scene;
   }catch(e){console.warn('Optional art fallback',name,e)}
@@ -68,7 +71,7 @@ export function makeCombatant(T,scene,pack,color){
     o.material=Array.isArray(o.material)?o.material.map(modify):modify(o.material);
    }
   });
-  const normalized=new T.Group();normalized.scale.setScalar(43/dim.y);normalized.add(body);holder.add(normalized);
+  const normalized=new T.Group();normalized.scale.setScalar(32/dim.y);normalized.add(body);holder.add(normalized);
   const mixer=new T.AnimationMixer(body),clips=[...(pack.GeneralClips||[]),...(pack.MoveClips||[])],actions={};
   for(const clip of clips){if(/^(Idle_A|Walking_A|Running_A|Death_A)$/i.test(clip.name))actions[clip.name]=mixer.clipAction(clip)}
   const first=actions.Idle_A||actions.Walking_A||actions.Running_A;if(first)first.play();

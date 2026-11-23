@@ -106,5 +106,23 @@
     "sha": "f8406c3e30f55682cdf2e51ea4124b1cbb698261",
     "bytes": 1714268,
     "license": "Author CC0"
+  },
+  {
+    "repository": "petroulacl/fps-buildings-env-kit",
+    "ref": "1dd8e932402deb82422920df2e7fd079391e55d3",
+    "path": "buildings/kenney-modular-buildings/Models/GLB format/Textures/colormap.png",
+    "dest": "assets/pro/v1/kenney_modular/Textures/colormap.png",
+    "sha": "c6646e245404f334bfc719014ff08735b3e6fa82",
+    "bytes": 7529,
+    "license": "Kenney CC0"
+  },
+  {
+    "repository": "petroulacl/fps-buildings-env-kit",
+    "ref": "1dd8e932402deb82422920df2e7fd079391e55d3",
+    "path": "buildings/kenney-city-kit-suburban/Models/GLB format/Textures/colormap.png",
+    "dest": "assets/pro/v1/kenney_suburban/Textures/colormap.png",
+    "sha": "9838fb4ccae35aa66eb2392e7f25c88f7ca28b38",
+    "bytes": 11784,
+    "license": "Kenney CC0"
   }
 ]
