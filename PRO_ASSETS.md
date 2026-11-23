@@ -13,3 +13,5 @@ V0.15 licensed world pack: genuine CC0 GLB houses, two pine trees with Instanced
 V0.15.1: opt-in KTX2 GPU compression (toktx + Pillow) and KTX2Loader with JPEG fallback. No KTX2 conversion is claimed unless the optional encoder is installed and outputs validated locally. Correct terrain smoothing along roads.
 
 V0.15.3: lazy skinned enemy allocation only as opponents enter ~640 game units; prevents initializing 65 expensive skeletons at boot.
+
+V0.15.3 setup: optional 3D addons no longer block offline startup if not installed. Run python3 smoke_test.py for Python syntax and manifest checks.

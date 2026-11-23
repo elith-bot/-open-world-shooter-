@@ -15,17 +15,26 @@ files={
   "assets/external/tree.glb": "https://raw.githubusercontent.com/Hidencod/tge-assets/main/packs/nature-kit/tree-pinetalla-detailed.glb",
   "assets/external/crate.glb": "https://raw.githubusercontent.com/Hidencod/tge-assets/main/packs/pirate-kit/crate.glb"
 }
+optional_vendor={"vendor/addons/utils/SkeletonUtils.js","vendor/addons/loaders/RGBELoader.js","vendor/addons/loaders/KTX2Loader.js","vendor/basis/basis_transcoder.js","vendor/basis/basis_transcoder.wasm"}
 for name,url in files.items():
  p=root/name
  if p.is_file() and p.stat().st_size>0: continue
- print("Downloading",name,flush=True)
- p.parent.mkdir(parents=True,exist_ok=True)
- temp=p.with_suffix(p.suffix+".part")
- with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"OpenWorldShooter/0.10"}),timeout=45) as response: data=response.read()
- if name.endswith(".glb") and data[:4]!=b"glTF": raise RuntimeError("Invalid GLB "+name)
- if not data: raise RuntimeError("Empty "+name)
- temp.write_bytes(data)
- os.replace(temp,p)
+ if name in optional_vendor and os.environ.get("OFFLINE")=="1":
+  print("Offline: optional renderer addon unavailable:",name)
+  continue
+ try:
+  print("Downloading",name,flush=True)
+  p.parent.mkdir(parents=True,exist_ok=True)
+  temp=p.with_suffix(p.suffix+".part")
+  with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"OpenWorldShooter/0.15"}),timeout=45) as response: data=response.read()
+  if name.endswith(".glb") and data[:4]!=b"glTF": raise RuntimeError("Invalid GLB "+name)
+  if not data: raise RuntimeError("Empty "+name)
+  temp.write_bytes(data)
+  os.replace(temp,p)
+ except Exception as e:
+  if name not in optional_vendor: raise
+  print("Optional addon unavailable; keeping playable fallback:",name,e)
+
 # Optional CC0 photo textures from Poly Haven; keep the existing world playable if unavailable.
 import json
 for asset, stem in []:
@@ -42,7 +51,7 @@ for asset, stem in []:
    temp.write_bytes(data)
    os.replace(temp,p)
  except Exception as e: print("Optional texture unavailable:",asset,e)
-print("Local assets ready")
+print("Core engine assets ready")
 
 
 # Pinned upstream art; verify Git blob hashes before installing.
