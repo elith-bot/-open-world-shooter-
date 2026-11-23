@@ -21,4 +21,20 @@ for name,url in files.items():
  if not data: raise RuntimeError("Empty "+name)
  temp.write_bytes(data)
  os.replace(temp,p)
+# Optional CC0 photo textures from Poly Haven; keep the existing world playable if unavailable.
+import json
+for asset, stem in ([] if os.environ.get("OFFLINE")=="1" else [("grass_01","grass"),("asphalt_02","asphalt")]):
+ try:
+  keys=[("diff","color"),("nor_gl","normal")]
+  for key,suffix in keys:
+   p=root/("assets/external/"+stem+"-"+suffix+".jpg")
+   if p.is_file() and p.stat().st_size>0: continue
+   with urllib.request.urlopen("https://api.polyhaven.com/files/"+asset,timeout=20) as response: meta=json.load(response)
+   url=meta[key]["1k"]["jpg"]["url"]
+   with urllib.request.urlopen(url,timeout=45) as response: data=response.read()
+   if not data.startswith(b"\xff\xd8"): raise RuntimeError("Expected JPEG")
+   temp=p.with_suffix(".part")
+   temp.write_bytes(data)
+   os.replace(temp,p)
+ except Exception as e: print("Optional texture unavailable:",asset,e)
 print("Local assets ready")
