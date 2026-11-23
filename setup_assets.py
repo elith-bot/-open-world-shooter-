@@ -16,7 +16,7 @@ for name,url in files.items():
  print("Downloading",name,flush=True)
  p.parent.mkdir(parents=True,exist_ok=True)
  temp=p.with_suffix(p.suffix+".part")
- with urllib.request.urlopen(url,timeout=45) as response: data=response.read()
+ with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"OpenWorldShooter/0.10"}),timeout=45) as response: data=response.read()
  if name.endswith(".glb") and data[:4]!=b"glTF": raise RuntimeError("Invalid GLB "+name)
  if not data: raise RuntimeError("Empty "+name)
  temp.write_bytes(data)
@@ -29,7 +29,7 @@ for asset, stem in ([] if os.environ.get("OFFLINE")=="1" else [("grass_01","gras
   for key,suffix in keys:
    p=root/("assets/external/"+stem+"-"+suffix+".jpg")
    if p.is_file() and p.stat().st_size>0: continue
-   with urllib.request.urlopen("https://api.polyhaven.com/files/"+asset,timeout=20) as response: meta=json.load(response)
+   with urllib.request.urlopen(urllib.request.Request("https://api.polyhaven.com/files/"+asset,headers={"User-Agent":"OpenWorldShooter/0.10 (local game asset installer)"}),timeout=20) as response: meta=json.load(response)
    url=meta[key]["1k"]["jpg"]["url"]
    with urllib.request.urlopen(url,timeout=45) as response: data=response.read()
    if not data.startswith(b"\xff\xd8"): raise RuntimeError("Expected JPEG")
@@ -38,3 +38,6 @@ for asset, stem in ([] if os.environ.get("OFFLINE")=="1" else [("grass_01","gras
    os.replace(temp,p)
  except Exception as e: print("Optional texture unavailable:",asset,e)
 print("Local assets ready")
+
+manifest={stem+"-"+suffix:(root/("assets/external/"+stem+"-"+suffix+".jpg")).is_file() for stem in ("grass","asphalt") for suffix in ("color","normal")}
+(root/"assets/texture-manifest.json").write_text(json.dumps(manifest))

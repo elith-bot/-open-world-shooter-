@@ -9,7 +9,7 @@ fi
 python3 setup_assets.py
 PORT="${PORT:-8080}"
 URL="http://127.0.0.1:$PORT"
-python3 -m http.server "$PORT" --bind 127.0.0.1 &
+python3 server.py "$PORT" &
 PID=$!
 trap 'kill "$PID" 2>/dev/null || true' EXIT
 trap 'exit 130' INT
