@@ -1,0 +1,110 @@
+[
+  {
+    "repository": "MolochDaGod/starwaygruda-webclient",
+    "ref": "9391fc5721156738e0aa3cee9fa2e53bd6325165",
+    "path": "public/assets/characters/kaykit/Ranger.glb",
+    "dest": "assets/pro/v1/combatant.glb",
+    "sha": "8edaf04430036130c3a7fcb6767049aac3c3f3a7",
+    "bytes": 484712,
+    "license": "KayKit CC0"
+  },
+  {
+    "repository": "MolochDaGod/starwaygruda-webclient",
+    "ref": "9391fc5721156738e0aa3cee9fa2e53bd6325165",
+    "path": "public/assets/characters/kaykit/Rig_Medium_MovementBasic.glb",
+    "dest": "assets/pro/v1/movement.glb",
+    "sha": "98e965e886ec539e80f8984a77a29b0c1c02e5e5",
+    "bytes": 689624,
+    "license": "KayKit CC0"
+  },
+  {
+    "repository": "MolochDaGod/starwaygruda-webclient",
+    "ref": "9391fc5721156738e0aa3cee9fa2e53bd6325165",
+    "path": "public/assets/characters/kaykit/Rig_Medium_General.glb",
+    "dest": "assets/pro/v1/general.glb",
+    "sha": "5d16cb6815fc8371705147188813f851c10ba26a",
+    "bytes": 828240,
+    "license": "KayKit CC0"
+  },
+  {
+    "repository": "petroulacl/fps-buildings-env-kit",
+    "ref": "1dd8e932402deb82422920df2e7fd079391e55d3",
+    "path": "buildings/kenney-modular-buildings/Models/GLB format/building-sample-house-a.glb",
+    "dest": "assets/pro/v1/house_a.glb",
+    "sha": "7256dcd83688fad117b6a2590dc45819b2a87232",
+    "bytes": 28336,
+    "license": "Kenney CC0"
+  },
+  {
+    "repository": "petroulacl/fps-buildings-env-kit",
+    "ref": "1dd8e932402deb82422920df2e7fd079391e55d3",
+    "path": "buildings/kenney-modular-buildings/Models/GLB format/building-sample-house-b.glb",
+    "dest": "assets/pro/v1/house_b.glb",
+    "sha": "5bd30f0e6349c25a076ef994c2daac9da45a1590",
+    "bytes": 33788,
+    "license": "Kenney CC0"
+  },
+  {
+    "repository": "petroulacl/fps-buildings-env-kit",
+    "ref": "1dd8e932402deb82422920df2e7fd079391e55d3",
+    "path": "buildings/kenney-modular-buildings/Models/GLB format/building-sample-house-c.glb",
+    "dest": "assets/pro/v1/house_c.glb",
+    "sha": "c5effc43fb09c4ffe250e54bfeeadaa14af7730f",
+    "bytes": 31552,
+    "license": "Kenney CC0"
+  },
+  {
+    "repository": "petroulacl/fps-buildings-env-kit",
+    "ref": "1dd8e932402deb82422920df2e7fd079391e55d3",
+    "path": "buildings/kenney-city-kit-suburban/Models/GLB format/building-type-c.glb",
+    "dest": "assets/pro/v1/house_d.glb",
+    "sha": "91bbbacbccfd63ca56cb40573a96bec93528865f",
+    "bytes": 99592,
+    "license": "Kenney CC0"
+  },
+  {
+    "repository": "petroulacl/fps-buildings-env-kit",
+    "ref": "1dd8e932402deb82422920df2e7fd079391e55d3",
+    "path": "buildings/kenney-city-kit-suburban/Models/GLB format/building-type-j.glb",
+    "dest": "assets/pro/v1/house_e.glb",
+    "sha": "363afd7c2ae39e00d28843fe34996f5aae892b15",
+    "bytes": 99512,
+    "license": "Kenney CC0"
+  },
+  {
+    "repository": "petroulacl/fps-buildings-env-kit",
+    "ref": "1dd8e932402deb82422920df2e7fd079391e55d3",
+    "path": "environment/vegetation/polypizza-stylized-nature-gltf/Pine.glb",
+    "dest": "assets/pro/v1/pine_a.glb",
+    "sha": "c5104d7ab8539d1037860ee905f87e29c164224d",
+    "bytes": 2147312,
+    "license": "Quaternius CC0"
+  },
+  {
+    "repository": "petroulacl/fps-buildings-env-kit",
+    "ref": "1dd8e932402deb82422920df2e7fd079391e55d3",
+    "path": "environment/vegetation/polypizza-stylized-nature-gltf/Pine-699sFuLCN2.glb",
+    "dest": "assets/pro/v1/pine_b.glb",
+    "sha": "47ee7ef5eb273ebfc0ede472edfa6469eaa15ff4",
+    "bytes": 2261060,
+    "license": "Quaternius CC0"
+  },
+  {
+    "repository": "petroulacl/fps-buildings-env-kit",
+    "ref": "1dd8e932402deb82422920df2e7fd079391e55d3",
+    "path": "environment/skyboxes/polyhaven-hdri/kloppenheim_06_puresky_2k.hdr",
+    "dest": "assets/pro/v1/sky.hdr",
+    "sha": "5a3e80bda83c6feec7ad76387de2c24d41959a88",
+    "bytes": 4434394,
+    "license": "Poly Haven CC0"
+  },
+  {
+    "repository": "JaronKBragg7337/asset-pack-ue-threejs-blender-unity",
+    "ref": "f5a53eaadbb46fac8e29faabb6c0ac1b6c6d2311",
+    "path": "examples/industrial_outpost/ModKit_Industrial_Outpost.glb",
+    "dest": "assets/pro/v1/outpost.glb",
+    "sha": "f8406c3e30f55682cdf2e51ea4124b1cbb698261",
+    "bytes": 1714268,
+    "license": "Author CC0"
+  }
+]

@@ -3,6 +3,9 @@ root=pathlib.Path(__file__).resolve().parent
 files={
   "vendor/three.module.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js",
   "vendor/addons/loaders/GLTFLoader.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/loaders/GLTFLoader.js",
+  "vendor/addons/utils/SkeletonUtils.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/utils/SkeletonUtils.js",
+  "vendor/addons/loaders/RGBELoader.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/loaders/RGBELoader.js",
+  "vendor/addons/loaders/KTX2Loader.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/loaders/KTX2Loader.js",
   "vendor/addons/utils/BufferGeometryUtils.js": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/utils/BufferGeometryUtils.js",
   "vendor/LICENSE": "https://cdn.jsdelivr.net/npm/three@0.160.1/LICENSE",
   "assets/external/building-a.glb": "https://raw.githubusercontent.com/Hidencod/tge-assets/main/packs/city-kit-commercial/building-a.glb",
@@ -61,3 +64,28 @@ for name, item in pro.items():
 
 manifest={stem+"-"+suffix:(root/("assets/external/"+stem+"-"+suffix+".jpg")).is_file() for stem in ("grass","asphalt") for suffix in ("color","normal")}
 (root/"assets/texture-manifest.json").write_text(json.dumps(manifest))
+
+
+# Optional CC0 environment pack. Download separately with verified Git blob hashes.
+import urllib.parse
+catalog=json.loads((root/"asset_sources_v1.json").read_text())
+legacy=json.loads((root/"assets/pro-manifest.json").read_text())
+for item in catalog:
+ name=item["dest"]; p=root/name
+ def good(data):
+  return hashlib.sha1(b"blob "+str(len(data)).encode()+b"\0"+data).hexdigest()==item["sha"]
+ if p.is_file() and good(p.read_bytes()):
+  legacy[name[7:]]=True
+  continue
+ legacy[name[7:]]=False
+ if os.environ.get("OFFLINE")=="1": continue
+ try:
+  address="https://raw.githubusercontent.com/"+item["repository"]+"/"+item["ref"]+"/"+urllib.parse.quote(item["path"],safe="/")
+  print("Importing licensed V1 asset:",name,flush=True)
+  with urllib.request.urlopen(urllib.request.Request(address,headers={"User-Agent":"OpenWorldShooter/0.15"}),timeout=50) as response: data=response.read()
+  if not good(data): raise RuntimeError("Unexpected Git object hash")
+  p.parent.mkdir(parents=True,exist_ok=True)
+  part=p.with_suffix(p.suffix+".part");part.write_bytes(data);os.replace(part,p)
+  legacy[name[7:]]=True
+ except Exception as e: print("Optional V1 asset unavailable:",name,e,flush=True)
+(root/"assets/pro-manifest.json").write_text(json.dumps(legacy))
