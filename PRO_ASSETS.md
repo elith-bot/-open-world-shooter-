@@ -17,3 +17,5 @@ V0.15.3: lazy skinned enemy allocation only as opponents enter ~640 game units; 
 V0.15.3 setup: optional 3D addons no longer block offline startup if not installed. Run python3 smoke_test.py for Python syntax and manifest checks.
 
 V0.15.4 stability: include correct Kenney modular/suburban colormap palettes via pinned hashes; per-model GLTF resource paths; scale and rotate KayKit character; guarded animation loop with visible runtime error and 2D fallback; responsive fullscreen/orientation resizing; WebGL context lost handling. Requires mobile test.
+
+V0.15.5 fixes ReferenceError: actor is not defined. Initializer-scoped actor factory is stored as spawnActor and lazy nearby NPC generation uses that factory. A mobile test is still needed to verify gameplay.
