@@ -1,0 +1,16 @@
+[
+  {
+    "source": "https://scenecrate.com/worlds/buildings/forest-cabin/delivery.zip",
+    "sha256": "6bbdcf783ca1f7baa391f555e5e73823fe00112701ab0982b8b9160e6cd28a84",
+    "dest": "assets/pro/v1/real_house_a.glb",
+    "license": "CC0-1.0",
+    "name": "Cedarwatch Cabin"
+  },
+  {
+    "source": "https://scenecrate.com/worlds/buildings/desert-outpost/delivery.zip",
+    "sha256": "78e0b1f8117bed871fe5952adf6c36c8ff28f210b9819f98b15dc34fa92c0077",
+    "dest": "assets/pro/v1/real_house_b.glb",
+    "license": "CC0-1.0",
+    "name": "Sunward Outpost"
+  }
+]

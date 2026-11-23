@@ -16,3 +16,7 @@ The optional world pack uses direct pinned GitHub blobs and verifies Git object 
 - `assets/pro/v1/outpost.glb` — Author CC0, JaronKBragg7337/asset-pack-ue-threejs-blender-unity, `examples/industrial_outpost/ModKit_Industrial_Outpost.glb`, ref `f5a53eaadbb46fac8e29faabb6c0ac1b6c6d2311`.
 
 KayKit's animated Ranger is a **stylized placeholder**, not a realistic modern military operator. A truly realistic licensed military character remains a later replacement; do not use Adobe Mixamo model files without the relevant authorization.
+
+## Independent photogrammetry-inspired building packs
+- Cedarwatch Cabin: https://scenecrate.com/worlds/buildings/forest-cabin/delivery.zip, CC0-1.0, whole archive SHA-256 6bbdcf783ca1f7baa391f555e5e73823fe00112701ab0982b8b9160e6cd28a84. Only lightweight.glb is installed.
+- Sunward Outpost: https://scenecrate.com/worlds/buildings/desert-outpost/delivery.zip, CC0-1.0, whole archive SHA-256 78e0b1f8117bed871fe5952adf6c36c8ff28f210b9819f98b15dc34fa92c0077. Only lightweight.glb is installed.

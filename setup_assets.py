@@ -92,6 +92,29 @@ for item in catalog:
  except Exception as e: print("Optional V1 asset unavailable:",name,e,flush=True)
 (root/"assets/pro-manifest.json").write_text(json.dumps(legacy))
 
+
+# Additional small CC0 scene packs; verify SHA-256 before unzipping into the game.
+import zipfile,io
+for item in json.loads((root/"scenecrate_sources.json").read_text()):
+ dest=root/item["dest"];key=item["dest"][7:]
+ try:
+  if dest.is_file() and dest.read_bytes()[:4]==b"glTF": legacy[key]=True;continue
+  legacy[key]=False
+  if os.environ.get("OFFLINE")=="1": continue
+  print("Importing CC0 building:",item["name"],flush=True)
+  req=urllib.request.Request(item["source"],headers={"User-Agent":"Mozilla/5.0 OpenWorldShooter/0.15"})
+  with urllib.request.urlopen(req,timeout=55) as response: archive=response.read()
+  if hashlib.sha256(archive).hexdigest()!=item["sha256"]: raise RuntimeError("Scene zip checksum mismatch")
+  with zipfile.ZipFile(io.BytesIO(archive)) as z:
+   choices=[n for n in z.namelist() if n.replace("\\","/").endswith("models/lightweight.glb")]
+   if not choices: raise RuntimeError("Expected GLB missing from verified zip")
+   data=z.read(choices[0])
+  if data[:4]!=b"glTF": raise RuntimeError("Invalid glTF model")
+  dest.parent.mkdir(parents=True,exist_ok=True);tmp=dest.with_suffix(".glb.part");tmp.write_bytes(data);os.replace(tmp,dest)
+  legacy[key]=True
+ except Exception as e: print("CC0 building fallback:",item["name"],str(e),flush=True)
+(root/"assets/pro-manifest.json").write_text(json.dumps(legacy))
+
 # KTX2 is optional. This avoids startup failures on Termux without an encoder.
 try:
  import subprocess,sys

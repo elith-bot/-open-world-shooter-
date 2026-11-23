@@ -2,6 +2,7 @@
 // CC0 optional art pipeline for Open World.  Falls back to existing assets if files are absent.
 const ASSET_PATHS={
  Combatant:'pro/v1/combatant.glb',MoveClips:'pro/v1/movement.glb',GeneralClips:'pro/v1/general.glb',
+ RealHouseA:'pro/v1/real_house_a.glb',RealHouseB:'pro/v1/real_house_b.glb',
  HouseA:'pro/v1/house_a.glb',HouseB:'pro/v1/house_b.glb',HouseC:'pro/v1/house_c.glb',
  HouseD:'pro/v1/house_d.glb',HouseE:'pro/v1/house_e.glb',
  PineA:'pro/v1/pine_a.glb',PineB:'pro/v1/pine_b.glb',Outpost:'pro/v1/outpost.glb',
