@@ -5,3 +5,5 @@ Downloads verified against upstream Git blob hashes. Source licenses downloaded 
 V0.12: additional scanned wall materials, environment props and CC0-derived arms downloaded; arms not yet attached or animated. Existing building meshes are retained and retextured. No mobile runtime test.
 
 V0.13 performance pass: revert incompatible wall UV overrides, reduce prop density, distance-cull actors/static fitted props and limit render resolution/shadows. Existing assets retained. No new character or building mesh. Device validation pending.
+
+V0.14: single-flight visibility-aware local latency polling and basic camera weapon recoil, ADS shift and reload tilt. No new meshes or skeletal animations; device test pending.
