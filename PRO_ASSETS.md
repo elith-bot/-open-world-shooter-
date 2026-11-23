@@ -7,3 +7,5 @@ V0.12: additional scanned wall materials, environment props and CC0-derived arms
 V0.13 performance pass: revert incompatible wall UV overrides, reduce prop density, distance-cull actors/static fitted props and limit render resolution/shadows. Existing assets retained. No new character or building mesh. Device validation pending.
 
 V0.14: single-flight visibility-aware local latency polling and basic camera weapon recoil, ADS shift and reload tilt. No new meshes or skeletal animations; device test pending.
+
+V0.15 licensed world pack: genuine CC0 GLB houses, two pine trees with InstancedMesh, distant proxy LOD, HDRI sky, gently displaced terrain, KayKit skinned combatant with idle/walk/run (stylized placeholder), FP arms loaded from prior CC0 file. Requires phone testing.
